@@ -1,0 +1,113 @@
+   <!DOCTYPE html>
+   <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+         xmlns:form="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>payments</title>
+    </head>
+<body>
+<br/>
+<hr/>
+<h2>Converter</h2>
+<h3>here should be a pic of Hbank</h3>
+<br/>
+<hr/>
+
+<form th:method="POST" th:action="@{/templates/payments}" th:object="${payment}">
+    <label for="payersName" >Enter payersName:</label>
+    <input id="payersName" th:field="*{payersName}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersName')}" th:error="*{payersName}"> payersName error </div>
+    <br/>
+    <label for="payersAccount" >Enter payersAccount:</label>
+    <input id="payersAccount"  th:field="*{payersAccount}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersAccount')}" th:error="*{payersAccount}"> payersAccount error </div>
+    <br/>
+    <label for="payersBIK" >Enter payersBIK:</label>
+    <input id="payersBIK" th:field="*{payersBIK}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersBIK')}" th:error="*{payersBIK}"> payersBIK error </div>
+    <br/>
+
+    <label for="paymentDate" >Enter paymentDate:</label>
+    <input id="paymentDate" th:field="*{paymentDate}" type="text"/>
+<!--    <td th:text="${#dates.format(sprint.releaseDate, 'dd-MM-yyyy HH:mm')}">30-12-2021 23:59</td>-->
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('paymentDate')}" th:error="*{paymentDate}"> paymentDate error </div>
+
+    <br/>
+    <label for="dateOfExecution" >Enter dateOfExecution:</label>
+    <input id="dateOfExecution" th:field="*{dateOfExecution}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('dateOfExecution')}" th:error="*{dateOfExecution}"> dateOfExecution error </div>
+    <br/>
+
+    <label for="beneficiarysName" >Enter beneficiarysName:</label>
+    <input id="beneficiarysName" th:field="*{beneficiarysName}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{beneficiarysName}"> beneficiarysName error </div>
+    <br/>
+    <label for="beneficiarysAccount" >Enter beneficiarysAccount:</label>
+    <input id="beneficiarysAccount" th:field="*{beneficiarysAccount}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{beneficiarysAccount}"> beneficiarysAccount error </div>
+    <br/>
+    <label for="INN" >Enter INN:</label>
+    <input id="INN" th:field="*{INN}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{INN}"> INN error </div>
+    <br/>
+    <label for="beneficiarysBIK" >Enter beneficiarysBIK:</label>
+    <input id="beneficiarysBIK" th:field="*{beneficiarysBIK}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{beneficiarysBIK}"> beneficiarysBIK error </div>
+    <br/>
+    <label for="amount" >Enter amount:</label>
+    <input id="amount" th:field="*{amount}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{amount}"> amount error </div>
+    <br/>
+
+
+
+<!--<select name ="GKPO">-->
+<!--    <option th:each="GKPOtype: ${gkpo.values()}"-->
+<!--     th:value="${GKPOtype}" th:text="${GKPOtype}"></option>-->
+<!--</select>-->
+    <br/>
+    <label  >Enter GKPO:</label>
+
+    <select name ="GKPO">
+        <option th:each="GKPOtype: ${T(org.example.models.GKPO).values()}"
+                th:value="${GKPOtype}"
+                th:text="${GKPOtype.displayValue}">
+        </option>
+    </select>
+
+
+    <br/>
+
+
+
+<!--    -->
+<!--    <label for="payersName" >Enter payersName:</label>-->
+<!--    <input id="GKPO" th:field="*{GKPO}" type="text"/>-->
+<!--    <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{GKPO}"> GKPO error </div>-->
+<!--    <br/>-->
+<!--    -->
+
+
+
+    <label for="purposeOfPayment" >Enter purposeOfPayment:</label>
+    <input id="purposeOfPayment" th:field="*{purposeOfPayment}" type="text"/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:error="*{purposeOfPayment}"> purposeOfPayment error </div>
+    <br/>
+
+    <input type="submit" value="Get a  txt file "/>
+
+
+    <form:form method = "POST" modelAttribute = "fileUpload"
+               enctype = "multipart/form-data">
+        Please select a file to upload :
+        <input type = "file" name = "file" />
+        <input type = "submit" value = "upload" />
+    </form:form>
+
+
+</form>
+
+</body>
+
+
+</html>

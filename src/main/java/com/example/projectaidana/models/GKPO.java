@@ -20,14 +20,14 @@ public enum GKPO {
 
 
 
-  private String gkpo;
-
-    public String getGkpo() {
-        return gkpo;
-    }
-
-    public void setGkpo(String gkpo) {
-        this.gkpo = gkpo;
-    }
+//  private String gkpo;
+//
+//    public String getGkpo() {
+//        return gkpo;
+//    }
+//
+//    public void setGkpo(String gkpo) {
+//        this.gkpo = gkpo;
+//    }
 
 }

@@ -69,7 +69,7 @@
     <label  >Enter GKPO:</label>
 
     <select name ="GKPO">
-        <option th:each="GKPOtype: ${T(org.example.models.GKPO).values()}"
+        <option th:each="GKPOtype: ${gkpo}"
                 th:value="${GKPOtype}"
                 th:text="${GKPOtype.displayValue}">
         </option>

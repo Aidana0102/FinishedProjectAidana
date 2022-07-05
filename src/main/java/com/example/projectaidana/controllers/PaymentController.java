@@ -56,7 +56,7 @@ public class PaymentController {
             if(bindingResult.hasErrors())
                 return "/payments/mn";
             paymentService.save(payment);
-                return "redirect:/payments";
+                return "redirect:/payments/mn";
         }
 
 //

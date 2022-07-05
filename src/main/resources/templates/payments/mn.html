@@ -10,63 +10,65 @@
 <hr/>
 <h2>Converter</h2>
 <h3>here should be a pic of Hbank</h3>
+
+<img src="image/halyk_logo_green_00.svg" alt=”Веб-приложение для генерации документа списочных платежей”>>
+
+
+
+Для ознокомления с инструкциями по работе с приложением посмотрите файл
+
 <br/>
 <hr/>
 
-<form th:method="POST" th:action="@{/templates/payments}" th:object="${payment}">
-    <label for="payersName" >Enter payersName:</label>
+<form th:method="POST" th:action="@{/payments}" th:object="${payment}">
+    <label for="payersName" >Плательщик     </label>
     <input id="payersName" th:field="*{payersName}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('payersName')}" th:error="*{payersName}"> payersName error </div>
     <br/>
-    <label for="payersAccount" >Enter payersAccount:</label>
+    <label for="payersAccount" >Счет           </label>
     <input id="payersAccount"  th:field="*{payersAccount}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('payersAccount')}" th:error="*{payersAccount}"> payersAccount error </div>
     <br/>
-    <label for="payersBIK" >Enter payersBIK:</label>
+    <label for="payersBIK" >БИК</label>
     <input id="payersBIK" th:field="*{payersBIK}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('payersBIK')}" th:error="*{payersBIK}"> payersBIK error </div>
     <br/>
 
-    <label for="paymentDate" >Enter paymentDate:</label>
-    <input id="paymentDate" th:field="*{paymentDate}" type="text"/>
-<!--    <td th:text="${#dates.format(sprint.releaseDate, 'dd-MM-yyyy HH:mm')}">30-12-2021 23:59</td>-->
+
+
+    <label for="paymentDate" >Дата</label>
+
+<input id="paymentDate" th:field="*{paymentDate}" type="date" />
     <div style="color:#ff0000" th:if="${#fields.hasErrors('paymentDate')}" th:error="*{paymentDate}"> paymentDate error </div>
 
     <br/>
-    <label for="dateOfExecution" >Enter dateOfExecution:</label>
-    <input id="dateOfExecution" th:field="*{dateOfExecution}" type="text"/>
+    <label for="dateOfExecution" >Дата исполнения:</label>
+    <input id="dateOfExecution" th:field="*{dateOfExecution}" type="date"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('dateOfExecution')}" th:error="*{dateOfExecution}"> dateOfExecution error </div>
     <br/>
 
-    <label for="beneficiarysName" >Enter beneficiarysName:</label>
+    <label for="beneficiarysName" >Получатель</label>
     <input id="beneficiarysName" th:field="*{beneficiarysName}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{beneficiarysName}"> beneficiarysName error </div>
     <br/>
-    <label for="beneficiarysAccount" >Enter beneficiarysAccount:</label>
+    <label for="beneficiarysAccount" >Счет получателя </label>
     <input id="beneficiarysAccount" th:field="*{beneficiarysAccount}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{beneficiarysAccount}"> beneficiarysAccount error </div>
     <br/>
-    <label for="INN" >Enter INN:</label>
+    <label for="INN" >ИНН</label>
     <input id="INN" th:field="*{INN}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{INN}"> INN error </div>
     <br/>
-    <label for="beneficiarysBIK" >Enter beneficiarysBIK:</label>
+    <label for="beneficiarysBIK" >БИК:</label>
     <input id="beneficiarysBIK" th:field="*{beneficiarysBIK}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{beneficiarysBIK}"> beneficiarysBIK error </div>
     <br/>
-    <label for="amount" >Enter amount:</label>
+    <label for="amount" >Сумма</label>
     <input id="amount" th:field="*{amount}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{amount}"> amount error </div>
     <br/>
 
-
-
-<!--<select name ="GKPO">-->
-<!--    <option th:each="GKPOtype: ${gkpo.values()}"-->
-<!--     th:value="${GKPOtype}" th:text="${GKPOtype}"></option>-->
-<!--</select>-->
-    <br/>
-    <label  >Enter GKPO:</label>
+    <label  >ГКПО:</label>
 
     <select name ="GKPO">
         <option th:each="GKPOtype: ${gkpo}"
@@ -74,32 +76,21 @@
                 th:text="${GKPOtype.displayValue}">
         </option>
     </select>
-
-
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{GKPO}"> GKPO error </div>
     <br/>
-
-
-
-<!--    -->
-<!--    <label for="payersName" >Enter payersName:</label>-->
-<!--    <input id="GKPO" th:field="*{GKPO}" type="text"/>-->
-<!--    <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{GKPO}"> GKPO error </div>-->
-<!--    <br/>-->
-<!--    -->
-
-
-
-    <label for="purposeOfPayment" >Enter purposeOfPayment:</label>
+    <label for="purposeOfPayment" >Назначение платежа</label>
     <input id="purposeOfPayment" th:field="*{purposeOfPayment}" type="text"/>
     <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:error="*{purposeOfPayment}"> purposeOfPayment error </div>
     <br/>
+    <br/>
+    <input type="submit" value="Сформировать платежный файл "/>
 
-    <input type="submit" value="Get a  txt file "/>
-
-
+    <br/>
+    <br/>
     <form:form method = "POST" modelAttribute = "fileUpload"
                enctype = "multipart/form-data">
-        Please select a file to upload :
+        <br/>
+        Выберите файл:
         <input type = "file" name = "file" />
         <input type = "submit" value = "upload" />
     </form:form>

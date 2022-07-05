@@ -1,7 +1,7 @@
 package com.example.projectaidana.models;
 
 public enum GKPO {
-    TYPE0(""),
+    TYPE0("Выберите ГКПО "),
     TYPE("125001"),
     TYPE2("125002"),
     TYPE3("125005"),

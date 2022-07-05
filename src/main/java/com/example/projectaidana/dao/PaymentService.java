@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
@@ -14,4 +16,10 @@ public class PaymentService {
     public Payment save(Payment payment){
        return paymentRepository.save(payment);
     }
+
+    public List<Payment>findAll(){
+        return paymentRepository.findAll();
+    }
+
+
 }

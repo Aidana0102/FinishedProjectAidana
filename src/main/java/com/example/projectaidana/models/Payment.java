@@ -35,11 +35,11 @@ public class Payment {
     Long payersBIK;
 
     @NotEmpty(message="THe field should not be empty")
-     Date  dateOfExecution;
+    String  dateOfExecution;
 
 
     @NotEmpty(message="The field should not be empty")
-    Date paymentDate;
+   String paymentDate;
 
     @NotEmpty(message="Name should not be empty")
     String  beneficiarysName;

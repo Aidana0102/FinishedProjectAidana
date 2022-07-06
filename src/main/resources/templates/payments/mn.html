@@ -4,99 +4,727 @@
     <head>
         <meta charset="UTF-8">
         <title>payments</title>
+        <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+
+        <script type="text/javascript" src="/resources/static/script.js"></script>
+        <script src="static/script.js"></script>
+
+
+
     </head>
 <body>
-<br/>
 <hr/>
-<h2>Converter</h2>
-<h3>here should be a pic of Hbank</h3>
+<div class="container1" >
+<div class="container">
+    <img src="image/37467041-830b-4394-ace3-78d5ac3c8405.jpg">
 
-<img src="image/halyk_logo_green_00.svg" alt=”Веб-приложение для генерации документа списочных платежей”>>
-
-
+    <div class="bottom-left">Веб-приложение для генерации документа списочных платежей</div>
+</div>
+<br/>
 
 Для ознокомления с инструкциями по работе с приложением посмотрите файл
-
+payment
 <br/>
 <hr/>
 
-<form th:method="POST" th:action="@{/payments}" th:object="${payment}">
-    <label for="payersName" >Плательщик     </label>
-    <input id="payersName" th:field="*{payersName}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersName')}" th:error="*{payersName}"> payersName error </div>
+<form   th:method="POST" th:action="@{/payments}" th:object="${payment}">
+    <div class="all">
+
+    <div  class="first">
+        <p>Общее описание</p>
+<!--      th:object="${poluchatel}">-->
+        <label for="payersName" ><strong>Плательщик</strong>     </label><br/>
+    <input id="payersName" th:field="*{payersName}" type="text"    required/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersName')}" th:error="*{payersName}">Заполните это поле  </div>
     <br/>
-    <label for="payersAccount" >Счет           </label>
-    <input id="payersAccount"  th:field="*{payersAccount}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersAccount')}" th:error="*{payersAccount}"> payersAccount error </div>
+    <label for="payersAccount" ><strong>Счет  </strong>         </label><br/>
+    <input id="payersAccount"  th:field="*{payersAccount}" type="text"     required/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersAccount')}" th:error="*{payersAccount}">
+    Допускаются вводить только цифры.Количество симвлов должно быть ровно  16  </div>
     <br/>
-    <label for="payersBIK" >БИК</label>
-    <input id="payersBIK" th:field="*{payersBIK}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersBIK')}" th:error="*{payersBIK}"> payersBIK error </div>
+    <label for="payersBIK" ><strong>БИК  </strong></label><br/>
+    <input id="payersBIK" th:field="*{payersBIK}" type="text"    required/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('payersBIK')}" th:error="*{payersBIK}"> Количество симвлов должно быть ровно 6  </div>
     <br/>
 
 
 
-    <label for="paymentDate" >Дата</label>
+    <label for="paymentDate" ><strong>Дата</strong></label><br/>
 
-<input id="paymentDate" th:field="*{paymentDate}" type="date" />
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('paymentDate')}" th:error="*{paymentDate}"> paymentDate error </div>
-
-    <br/>
-    <label for="dateOfExecution" >Дата исполнения:</label>
-    <input id="dateOfExecution" th:field="*{dateOfExecution}" type="date"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('dateOfExecution')}" th:error="*{dateOfExecution}"> dateOfExecution error </div>
-    <br/>
-
-    <label for="beneficiarysName" >Получатель</label>
-    <input id="beneficiarysName" th:field="*{beneficiarysName}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{beneficiarysName}"> beneficiarysName error </div>
-    <br/>
-    <label for="beneficiarysAccount" >Счет получателя </label>
-    <input id="beneficiarysAccount" th:field="*{beneficiarysAccount}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{beneficiarysAccount}"> beneficiarysAccount error </div>
-    <br/>
-    <label for="INN" >ИНН</label>
-    <input id="INN" th:field="*{INN}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{INN}"> INN error </div>
-    <br/>
-    <label for="beneficiarysBIK" >БИК:</label>
-    <input id="beneficiarysBIK" th:field="*{beneficiarysBIK}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{beneficiarysBIK}"> beneficiarysBIK error </div>
-    <br/>
-    <label for="amount" >Сумма</label>
-    <input id="amount" th:field="*{amount}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{amount}"> amount error </div>
-    <br/>
-
-    <label  >ГКПО:</label>
-
-    <select name ="GKPO">
-        <option th:each="GKPOtype: ${gkpo}"
-                th:value="${GKPOtype}"
-                th:text="${GKPOtype.displayValue}">
-        </option>
-    </select>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{GKPO}"> GKPO error </div>
-    <br/>
-    <label for="purposeOfPayment" >Назначение платежа</label>
-    <input id="purposeOfPayment" th:field="*{purposeOfPayment}" type="text"/>
-    <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:error="*{purposeOfPayment}"> purposeOfPayment error </div>
-    <br/>
-    <br/>
-    <input type="submit" value="Сформировать платежный файл "/>
+<input id="paymentDate" th:field="*{paymentDate}" type="date"    required />
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('paymentDate')}" th:error="*{paymentDate}"> Заполните это поле  </div>
 
     <br/>
+    <label for="dateOfExecution" ><strong>Дата исполнения</strong></label><br/>
+    <input id="dateOfExecution" th:field="*{dateOfExecution}" type="date"    required/>
+    <div style="color:#ff0000" th:if="${#fields.hasErrors('dateOfExecution')}" th:error="*{dateOfExecution}">Заполните это поле  </div>
     <br/>
-    <form:form method = "POST" modelAttribute = "fileUpload"
-               enctype = "multipart/form-data">
-        <br/>
-        Выберите файл:
-        <input type = "file" name = "file" />
-        <input type = "submit" value = "upload" />
-    </form:form>
 
+<!--    <form id="form1" style="display: none;">-->
+<!--        <input type="text" value="Я тут">-->
+<!--    </form>-->
+<!--    <input type="button" value="казать/Скрыть" onclick="disp(document.getElementById('form1'))" />-->
+
+
+<!--    <input type="button" value="Вставить" id='showButton' />-->
+    </div>
+
+
+
+    <div class="row">
+        <p>Платежи
+        <div class="blueButtons">
+<div class="addB">
+        <table class="table">
+            <tr>
+                <td width="100px"><button onclick="addRow()" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> Добавить</button></td>
+            </tr>
+        </table>
+</div>
+        <div class="uplB">
+        <form:form method = "POST" modelAttribute = "fileUpload"
+                   enctype = "multipart/form-data">
+
+            Выберите файл:
+            <input   class="second" type = "file" name = "file" />
+            <input   class="second2" type = "submit" value = "upload" />
+        </form:form>
+        </div>
+    </div>
+        <div id="fixed_scrol_block">
+            <table class="table" border="1">
+                <tr>
+                    <th width="27%" class="sticky_header">
+                        <i class="fa fa-user" aria-hidden="true"></i> ФИО
+                    </th>
+                    <th width="27%" class="sticky_header">
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> Счет
+                    </th>
+                    <th width="27%" class="sticky_header">
+                        <i class="fa fa-money" aria-hidden="true"></i> Сумма
+                    </th>
+                    <th width="15%" class="sticky_header">
+                        <i class="fa fa-bik" aria-hidden="true"></i> БИК
+                    </th>
+                    <th width="27%" class="sticky_header">
+                        <i class="fa fa-inn" aria-hidden="true"></i> ИНН
+                    </th>
+
+
+                <tbody id="payms">
+
+
+                </tbody>
+                <tbody id="added_rows">
+
+                </tbody>
+            </table>
+
+
+
+            <!--     <label for="beneficiarysName" ><strong>Получатель</strong></label><br/>  -->
+            <!--            <input id="beneficiarysName" th:field="*{poluchatel.beneficiarysName}" type="text"   required/>-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{poluchatel.beneficiarysName}"> Заполните это поле  </div>-->
+            <!--            <br/>-->
+            <!--            <label for="beneficiarysAccount" >Счет получателя </label>  <br/>-->
+            <!--            <input id="beneficiarysAccount" th:field="*{poluchatel.beneficiarysAccount}" type="text"    required/>-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{poluchatel.beneficiarysAccount}"> Количество симвлов должно быть ровно 16  </div>-->
+            <!--            <br/>-->
+            <!--            <label for="INN" >ИНН</label>  <br/>-->
+            <!--            <input id="INN" th:field="*{poluchatel.INN}" type="text"   />-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{poluchatel.INN}"> Количество символов должно быть ровно  : 14  </div>-->
+            <!--            <br/>-->
+            <!--            <label for="beneficiarysBIK" >БИК:</label>  <br/>-->
+            <!--            <input id="beneficiarysBIK" th:field="*{poluchatel.beneficiarysBIK}" type="text"    />-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{poluchatel.beneficiarysBIK}"> Количество симвлов должно быть ровно  6 </div>-->
+            <!--            <br/>-->
+            <!--            <label for="amount" >Сумма</label>  <br/>-->
+            <!--            <input id="amount" th:field="*{poluchatel.amount}" type="text"    required/>-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{poluchatel.amount}"> Заполните это поле  </div>-->
+            <!--            <br/>-->
+
+            <!--            <label  >ГКПО:</label>  <br/>-->
+
+            <!--            <select name ="GKPO">-->
+            <!--                <option th:each="GKPOtype: ${gkpo}"-->
+            <!--                        th:value="${GKPOtype}"-->
+            <!--                        th:text="${GKPOtype.displayValue}"  >-->
+            <!--                </option>-->
+            <!--                </select>-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{poluchatel.GKPO}"> Заполните это поле  </div>-->
+            <!--            <br/>-->
+            <!--            <label for="purposeOfPayment" >Назначение платежа</label> <br/>-->
+            <!--            <input id="purposeOfPayment" th:field="*{poluchatel.purposeOfPayment}" type="text"    required/>-->
+            <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:e rror="*{purposeOfPayment}"> Заполните это поле  </div>-->
+            <!--            <br/>-->
+
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<!--     <label for="beneficiarysName" >Получатель</label>  <br/>-->
+<!--            <input id="beneficiarysName" th:field="*{poluchatel.beneficiarysName}" type="text"   required/>-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{poluchatel.beneficiarysName}"> Заполните это поле  </div>-->
+<!--            <br/>-->
+<!--            <label for="beneficiarysAccount" >Счет получателя </label>  <br/>-->
+<!--            <input id="beneficiarysAccount" th:field="*{poluchatel.beneficiarysAccount}" type="text"    required/>-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{poluchatel.beneficiarysAccount}"> Количество симвлов должно быть ровно 16  </div>-->
+<!--            <br/>-->
+<!--            <label for="INN" >ИНН</label>  <br/>-->
+<!--            <input id="INN" th:field="*{poluchatel.INN}" type="text"   />-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{poluchatel.INN}"> Количество символов должно быть ровно  : 14  </div>-->
+<!--            <br/>-->
+<!--            <label for="beneficiarysBIK" >БИК:</label>  <br/>-->
+<!--            <input id="beneficiarysBIK" th:field="*{poluchatel.beneficiarysBIK}" type="text"    />-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{poluchatel.beneficiarysBIK}"> Количество симвлов должно быть ровно  6 </div>-->
+<!--            <br/>-->
+<!--            <label for="amount" >Сумма</label>  <br/>-->
+<!--            <input id="amount" th:field="*{poluchatel.amount}" type="text"    required/>-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{poluchatel.amount}"> Заполните это поле  </div>-->
+<!--            <br/>-->
+
+<!--            <label  >ГКПО:</label>  <br/>-->
+
+<!--            <select name ="GKPO">-->
+<!--                <option th:each="GKPOtype: ${gkpo}"-->
+<!--                        th:value="${GKPOtype}"-->
+<!--                        th:text="${GKPOtype.displayValue}"  >-->
+<!--                </option>-->
+<!--                </select>-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{poluchatel.GKPO}"> Заполните это поле  </div>-->
+<!--            <br/>-->
+<!--            <label for="purposeOfPayment" >Назначение платежа</label> <br/>-->
+<!--            <input id="purposeOfPayment" th:field="*{poluchatel.purposeOfPayment}" type="text"    required/>-->
+<!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:e rror="*{purposeOfPayment}"> Заполните это поле  </div>-->
+<!--            <br/>-->
+
+    <br/>
+
+    <br/>
+    <br/>
+
+    <br/>
+    <br/>
+
+    <input class="white" type="submit"  value="Сформировать платежный файл "/>
+    <a href="files/Payment.txt" download>Сформировать платежный файл</a>
 
 </form>
+
+
+</div>
+
+<script>
+    var add_row_num = 0;
+    var file_row_num = 0;
+
+
+    function check_all_amnt(){
+        var elems = document.getElementsByName('Amount');
+
+        sm = 0;
+        for (var i = 0; i < elems.length; i++) {
+            //alert(elems[i].value);
+            if (elems[i].value == '0' || elems[i].value == ' ') {
+                var p = i + 1;
+                alert('В строке ' + p + ' указана нулевая сумма');
+                elems[i].focus();
+                event.preventDefault();
+                return;
+            }
+            sm = sm + Number(elems[i].value.replace(',', '.'));
+            elems[i].value = elems[i].value.replace('.', ',');
+            //alert(sm + '---' + elems[i].value);
+        }
+    }
+    //function show_wind() {
+    //    //$("#test_div").show('slow');
+    //    $("#test_div").animate({
+    //        width: "200px",
+    //        height: "100px"
+    //    }, 1500);
+    //}
+    window.onload = function () {
+        //alert(new Date().toISOString());
+        document.getElementById('ImplementationDate').value = new Date().toISOString().substring(0, 10);
+    }
+
+    function showMDL() {
+        $('#exampleModalCenter').modal('show');
+    }
+
+    $(document).ready(function () {
+        $(".currency").autocomplete({
+            source: function (request, response) {
+                //alert('hello');
+                $.ajax({
+                    url: '/convertor/Halyk/getCurrency',
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        //alert(data);
+                        response($.map(data, function (item) {
+                            //alert(item.Name);
+                            return { label: item.Name, value: item.Name };
+                        }))
+
+                    }
+
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+
+    function addRow() {
+
+        //var tt = '<input required type="text" class="form-control contr" name="Name"/>';
+        //document.getElementById('test_div').innerHTML = tt;
+        var per = document.getElementById('hid');
+        event.preventDefault();
+        add_row_num = add_row_num + 1;
+        //alert(per.innerHTML);
+        $('#added_rows').append('<tr id="added_' + add_row_num + '"><td><input required type="text" class="form-control contr" name="Name" onkeypress="ent_pres(window.event)"/></td><td><input required  type="text" class="form-control contr"  minlength="16" maxlength="16" onkeypress="ent_pres(window.event)" name="LA"/></td><td><input required type="text" class="form-control contr" name="Amount" onkeypress="ent_pres(window.event)" onchange="count_summ()"/></td><td><a style="cursor:pointer" onclick="remrow(\'added_' + add_row_num + '\')"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td></tr>')
+        scroll();
+        count_rows();
+
+    }
+
+    function show() {
+        //alert('ok');
+        // $("#filee").dropzone({url:'/convertor/Halyk/Test'});
+    }
+
+    //function rem_added_row(id) {
+    //   // alert(id);
+    //    var s = document.getElementById(id);
+    //    //document.getElementById(id).hidden = true;
+    //    s.parentNode.removeChild(s);
+    //    //document.getElementById('added_rows').innerHTML = doc;
+    //}
+
+    function remrow(id) {
+        //alert(id);
+        var s = document.getElementById(id);
+        //document.getElementById(id).hidden = true;
+        s.parentNode.removeChild(s);
+        count_rows();
+        count_summ();
+    }
+
+    function scroll() {
+        var elem = document.getElementById('payms');
+        var l = document.getElementById('added_rows');
+        var ll = document.getElementById('payms');
+        //alert('Client h' +l.clientHeight+' Offset h'+l.offsetHeight+' Scroll h'+l.scrollHeight)
+        document.getElementById('fixed_scrol_block').scrollTo({ top: l.clientHeight + ll.clientHeight, behavior: "smooth" });
+    }
+
+
+    function get_extension(file) {
+        ext = "не определено";
+        //alert(file.name);
+        parts = file.name.split('.');
+        if (parts.length > 1) ext = parts.pop();
+        return ext;
+    }
+
+
+    var result_excel;
+    function change_descr() {
+        var file = document.getElementById("filee").files[0]
+
+        ext = "не определено";
+        parts = file.name.split('.');
+
+        if (parts.length > 1) ext = parts.pop();
+        //document.getElementById("discription").innerHTML = "Размер файла: " + file.size + " B Расширение: " + ext;
+        if (ext == 'xls' || ext == 'xlsx') {
+            //document.getElementById("fileForm").setAttribute("action", "/Halyk/ImportExcelFile");
+            //document.getElementById("fileForm").setAttribute("data-ajax-update", "#Excel_fields");
+            //document.getElementById("row_num").show();
+            //var ;
+            check_excel();
+        }
+        else {
+            //document.getElementById("fileForm").setAttribute("action", "Halyk/File");
+            //document.getElementById("fileForm").setAttribute("data-ajax-update", "#payms");
+            $('#row_num').hide('slow');
+            $('#cur').show('slow');
+        }
+    }
+
+
+    function check_excel() {
+        //data.append("first_row", $("#first_row").val());
+
+        var files = document.getElementById('filee').files;
+        //alert('exc');
+        var data = new FormData();
+        for (var x = 0; x < files.length; x++) {
+            data.append("upload", files[x]);
+        }
+        // alert()
+        $.ajax({
+            type: "POST",
+            url: '/convertor/Halyk/Check_excel',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                //alert(result);
+                //alert('ok');
+                result_excel = result;
+
+                if (result_excel == 'template') {
+                    document.getElementById('is_temp').value = result;
+                    //$('#row_num').show('slow');
+                }
+                else {
+                    document.getElementById('is_temp').value = result;
+                    $('#row_num').show('slow');
+                    //alert(result_excel);
+                }
+
+
+            },
+            error: function (xhr, status, p3) {
+                alert('Не удалось найти необходимые поля');
+            }
+        });
+    }
+
+    function sbmt_frm() {
+        //alert(document.forms[0]["Account_D"].value.length);
+        if (!check_frm()) {
+            event.preventDefault();
+        }
+        else {
+
+        }
+
+    }
+
+
+    function check_frm() {
+        var cnt = 0
+        if (document.forms[0]["Account_D"].value.length != 16) {
+            $("#err_Account_D").show();
+            $("#Account_D").addClass("notvalid");
+            cnt = cnt + 1;
+        }
+        else {
+            $("#err_Account_D").hide();
+            $("#Account_D").removeClass("notvalid");
+        }
+
+        if (document.forms[0]["Account_C"].value.length != 16) {
+            $("#err_Account_C").show();
+            $("#Account_C").addClass("notvalid");
+            cnt = cnt + 1;
+        }
+        else {
+            $("#err_Account_C").hide();
+            $("#Account_C").removeClass("notvalid");
+        }
+        if (cnt == 2) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+    $('#send_btn').on('click', function (e) {
+        //alert('ok');
+        e.preventDefault();
+        var files = document.getElementById('filee').files;
+        if (files.length > 0) {
+            $('#loading_div').show();
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("upload", files[x]);
+                }
+
+                //alert(get_extension(files[0]));
+                if (get_extension(files[0]) == 'xls' || get_extension(files[0]) == 'xlsx') {
+
+                    if ($("#is_temp").val() == 'template') {
+
+
+
+
+                        //alert('fadf');
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: '/convertor/Halyk/ImportTemplateExcel',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            beforeSend: function () {
+                                // alert('befor');
+                                $('#loading_div').show();
+                                //document.getElementById('#loading_div').hidden = false;
+                            },
+                            complete: function () {
+                                $('#loading_div').hide();
+                                //alert('after');
+                            },
+                            success: function (result) {
+                                document.getElementById("body_text").innerHTML = result;
+                                count_rows();
+                                count_summ();
+
+                                //$('#Excel_fields').show('slow');
+                            },
+                            error: function (xhr, status, p3) {
+                                alert('Не удалось найти необходимые поля');
+                            }
+                        });
+                    }
+
+
+                    else {
+                        //data.append("is_temp", $("#is_temp").val());
+                        data.append("first_row", $("#first_row").val());
+                        $.ajax({
+
+                            type: "POST",
+                            url: '/convertor/Halyk/ImportExcelFile',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (result) {
+                                document.getElementById("Excel_fields").innerHTML = result;
+                                $('#Excel_fields').show('slow');
+                            },
+                            error: function (xhr, status, p3) {
+                                alert('Не удалось распознать файл.');
+                            }
+
+                        });
+                    }
+
+                }
+                else {
+                    //data.append("Curren", $("#Curren").val());
+                    $('#loading_div').show();
+                    $.ajax({
+                        type: "POST",
+                        url: '/convertor/Halyk/ImportText',
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+
+                            document.getElementById("payms").innerHTML = result;
+                            $('#payms').show('slow');
+                            hide_exc_inform();
+                            count_summ();
+                            count_rows();
+
+                        },
+                        error: function (xhr, status, p3) {
+                            //document.getElementById('test').innerHTML = xhr.responseText;
+                            alert('Не удалось импортировать файл');
+                        }
+                    });
+
+                }
+                //$('#loading_div').hide();
+            } else {
+                alert("Браузер не поддерживает загрузку файлов HTML5!");
+            }
+            //document.getElementById('filee').files = null;
+            //count_rows();
+            //count_summ();
+        }
+    });
+    function hide_exc_inform() {
+
+        $('#Excel_fields').html('');
+        $('#row_num').hide('slow');
+        $('#cur').hide('slow');
+    }
+
+    function ent_pres(e) {
+        if (e.keyCode == 13) {
+            addRow();
+        }
+    }
+
+
+
+    $('.contr').on('keypress', function (e) {
+        if (e.keyCode == 13) {
+            addRow();
+        }
+    })
+
+
+
+    function count_summ() {
+
+        var elems = document.getElementsByName('Amount');
+
+        sm = 0;
+        for (var i = 0; i < elems.length; i++) {
+            //alert(sm);
+            sm = sm + Number(elems[i].value.replace(',', '.'));
+            elems[i].value = elems[i].value.replace('.', ',');
+            //alert(sm + '---' + elems[i].value);
+        }
+        document.getElementById('full_summ').innerText = 'Общая сумма ' + sm.toFixed(2);//.toFixed(2);
+        //alert(sm);
+    }
+
+
+    function count_rows() {
+        var elems = document.getElementsByName('Amount');
+        document.getElementById('full_amnt').innerText = 'Количество записей ' + elems.length;
+
+
+    }
+
+    function change_value(elem) {
+        alert(elem.value);
+        elem.attributes['value'] = '1';
+        alert('hhh');
+    }
+
+    function fuuunck(ev) {
+        //alert(ev.type);
+        ev.preventDefault();
+        //alert('Func');
+        var data = new FormData();
+
+
+        //alert(get_extension(files[0]));
+
+
+        data.append("Name_Column", $("#Name_Column").val());
+        data.append("Amount_Column", $("#Amount_Column").val());
+        data.append("CardNumber_Column", $("#CardNumber_Column").val());
+        //data.append("Curr", $("#Curr").val());
+
+        data.append("FieldRow", $("#FieldRow").val());
+        $.ajax({
+            type: "POST",
+            url: '/convertor/Halyk/FileAccepted',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                document.getElementById("payms").innerHTML = result;
+                count_summ();
+                count_rows();
+                //$('#Excel_fields').show('slow');
+            },
+            error: function (xhr, status, p3) {
+                alert(xhr.responseText);
+            }
+        });
+        hide_exc_inform();
+    }
+
+
+
+    $('#sender_frm_excel').on('click', function (e) {
+        //alert('f');
+
+        e.preventDefault();
+        //var files = document.getElementById('filee').files;
+        //if (files.length > 0) {
+        // if (window.FormData !== undefined) {
+        var data = new FormData();
+
+
+        //alert(get_extension(files[0]));
+
+
+        data.append("Name_Column", $("#Name_Column").val());
+        data.append("Amount_Column", $("#Amount_Column").val());
+        data.append("CardNumber_Column", $("#CardNumber_Column").val());
+        //data.append("Currency", $("#Currency").val());
+        $.ajax({
+            type: "POST",
+            url: '/convertor/Halyk/ImportExcelFile',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                document.getElementById("payms").innerHTML = result;
+                //$('#Excel_fields').show('slow');
+            },
+            error: function (xhr, status, p3) {
+                alert(xhr.responseText);
+            }
+        });
+        //}
+
+    })
+
+
+
+
+
+
+
+</script>
+
+
+<script>(function (a) { var b = "unobtrusiveAjaxClick", d = "unobtrusiveAjaxClickTarget", h = "unobtrusiveValidation"; function c(d, b) { var a = window, c = (d || "").split("."); while (a && c.length) a = a[c.shift()]; if (typeof a === "function") return a; b.push(d); return Function.constructor.apply(null, b) } function e(a) { return a === "GET" || a === "POST" } function g(b, a) { !e(a) && b.setRequestHeader("X-HTTP-Method-Override", a) } function i(c, b, e) { var d; if (e.indexOf("application/x-javascript") !== -1) return; d = (c.getAttribute("data-ajax-mode") || "").toUpperCase(); a(c.getAttribute("data-ajax-update")).each(function (f, c) { var e; switch (d) { case "BEFORE": e = c.firstChild; a("<div />").html(b).contents().each(function () { c.insertBefore(this, e) }); break; case "AFTER": a("<div />").html(b).contents().each(function () { c.appendChild(this) }); break; case "REPLACE-WITH": a(c).replaceWith(b); break; default: a(c).html(b) } }) } function f(b, d) { var j, k, f, h; j = b.getAttribute("data-ajax-confirm"); if (j && !window.confirm(j)) return; k = a(b.getAttribute("data-ajax-loading")); h = parseInt(b.getAttribute("data-ajax-loading-duration"), 10) || 0; a.extend(d, { type: b.getAttribute("data-ajax-method") || undefined, url: b.getAttribute("data-ajax-url") || undefined, cache: !!b.getAttribute("data-ajax-cache"), beforeSend: function (d) { var a; g(d, f); a = c(b.getAttribute("data-ajax-begin"), ["xhr"]).apply(b, arguments); a !== false && k.show(h); return a }, complete: function () { k.hide(h); c(b.getAttribute("data-ajax-complete"), ["xhr", "status"]).apply(b, arguments) }, success: function (a, e, d) { i(b, a, d.getResponseHeader("Content-Type") || "text/html"); c(b.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(b, arguments) }, error: function () { c(b.getAttribute("data-ajax-failure"), ["xhr", "status", "error"]).apply(b, arguments) } }); d.data.push({ name: "X-Requested-With", value: "XMLHttpRequest" }); f = d.type.toUpperCase(); if (!e(f)) { d.type = "POST"; d.data.push({ name: "X-HTTP-Method-Override", value: f }) } a.ajax(d) } function j(c) { var b = a(c).data(h); return !b || !b.validate || b.validate() } a(document).on("click", "a[data-ajax=true]", function (a) { a.preventDefault(); f(this, { url: this.href, type: "GET", data: [] }) }); a(document).on("click", "form[data-ajax=true] input[type=image]", function (c) { var g = c.target.name, e = a(c.target), f = a(e.parents("form")[0]), d = e.offset(); f.data(b, [{ name: g + ".x", value: Math.round(c.pageX - d.left) }, { name: g + ".y", value: Math.round(c.pageY - d.top) }]); setTimeout(function () { f.removeData(b) }, 0) }); a(document).on("click", "form[data-ajax=true] :submit", function (e) { var g = e.currentTarget.name, f = a(e.target), c = a(f.parents("form")[0]); c.data(b, g ? [{ name: g, value: e.currentTarget.value }] : []); c.data(d, f); setTimeout(function () { c.removeData(b); c.removeData(d) }, 0) }); a(document).on("submit", "form[data-ajax=true]", function (h) { var e = a(this).data(b) || [], c = a(this).data(d), g = c && c.hasClass("cancel"); h.preventDefault(); if (!g && !j(this)) return; f(this, { url: this.action, type: this.method || "GET", data: e.concat(a(this).serializeArray()) }) }) })(jQuery);</script>
+
+
+<script>
+$(function () {
+
+// We can attach the `fileselect` event to all file inputs on the page
+$(document).on('change', ':file', function () {
+var input = $(this),
+numFiles = input.get(0).files ? input.get(0).files.length : 1,
+label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+input.trigger('fileselect', [numFiles, label]);
+});
+
+// We can watch for our custom `fileselect` event like this
+$(document).ready(function () {
+$(':file').on('fileselect', function (event, numFiles, label) {
+//alert('selected');
+var input = $(this).parents('.input-group').find(':text'),
+log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+if (input.length) {
+input.val(log);
+} else {
+if (log) alert(log);
+}
+
+});
+});
+
+});
+</script>
+
 
 </body>
 

@@ -1,0 +1,80 @@
+body{
+    color:#113;
+
+}
+
+#beneficiarysName,#beneficiarysAccount,#beneficiarysBIK,#INN,#amount,#purposeOfPayment{
+    text-align: right;
+}
+
+img{
+    border:  1px solid green;
+    padding: 0 200px 70px 200px;
+
+}
+
+
+form{
+    border-style: solid;
+    padding: 20px;
+}
+
+.all{
+    display: flex;
+
+}
+.first{
+    padding-right: 100px;
+    padding-left: 5px;
+
+}
+#payersName,#payersAccount,#payersBIK,#paymentDate,#dateOfExecution{
+    padding: 5px 60px  5px 60px;
+    margin-top: 10px;
+}
+
+#payersName{
+    margin-top: 10px;
+}
+
+
+.white{
+    background-color:white ;
+    margin-left: 600px;
+    border:1px solid green ;
+    background: green ;
+padding: 10px;
+}
+
+.btn-primary{
+    background:#0072c6;
+    padding: 7px 30px 7px 7px ;
+
+}
+
+.sticky_header{
+    background: lime;
+    padding: 5px 50px  5px 50px  ;
+}
+
+p{
+    font-size:20px;
+}
+.blueButtons{
+    display: flex;
+}
+
+
+/*.second{*/
+/*    background:#0072c6;*/
+/*    padding: 7px 30px 7px 7px ;*/
+
+/*}*/
+.second2{
+    background:#0072c6;
+    padding: 7px 30px 7px 7px ;
+
+}
+.container1{
+
+}

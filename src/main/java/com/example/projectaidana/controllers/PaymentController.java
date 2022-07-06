@@ -1,8 +1,9 @@
 package com.example.projectaidana.controllers;
 
-import com.example.projectaidana.dao.PaymentService;
+import com.example.projectaidana.controllers.dao.PaymentService;
 import com.example.projectaidana.models.GKPO;
 import com.example.projectaidana.models.Payment;
+import com.example.projectaidana.models.Poluchatel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -45,19 +45,25 @@ public class PaymentController {
             model.addAttribute("payment",new Payment());
          List<GKPO> enums = Arrays.asList(GKPO.values());
             model.addAttribute("gkpo", enums);
-
+            model.addAttribute("poluchatel",new Poluchatel());
             return "/payments/mn";
         }
 
 
 
         @PostMapping()
-        public String create (@ModelAttribute("payment")  @Valid Payment payment, BindingResult bindingResult){
+        public String create (@ModelAttribute("payment")  @Valid Payment payment ,@ModelAttribute ("poluchatels")  @Valid List<Poluchatel>poluchatels, BindingResult bindingResult){
             if(bindingResult.hasErrors())
                 return "/payments/mn";
             paymentService.save(payment);
                 return "redirect:/payments/mn";
         }
+
+
+
+
+
+
 
 //
 //        @GetMapping()

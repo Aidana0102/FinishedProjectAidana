@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,18 +51,30 @@ public class PaymentController {
             model.addAttribute("payment",new Payment());
          List<GKPO> enums = Arrays.asList(GKPO.values());
             model.addAttribute("gkpo", enums);
-            model.addAttribute("poluchatel",new Poluchatel());
             return "/payments/mn";
         }
 
 
 
         @PostMapping()
-        public String create (@ModelAttribute("payment")  @Valid Payment payment ,@ModelAttribute ("poluchatels")  @Valid List<Poluchatel>poluchatels, BindingResult bindingResult){
-            if(bindingResult.hasErrors())
-                return "/payments/mn";
-            paymentService.save(payment);
-                return "redirect:/payments/mn";
+        public void create (@ModelAttribute("payment")  @Valid Payment payment , BindingResult bindingResult, HttpServletResponse response) throws IOException {
+//            if(bindingResult.hasErrors())
+//                return "/payments/mn";
+            File file = paymentService.save(payment);
+            response.setContentType("application/octet-stream");
+            String headerKey="Content-Disposition";
+            String headerValue="attachment; filename="+file.getName();
+            response.setHeader(headerKey,headerValue);
+            ServletOutputStream outputStream=response.getOutputStream();
+            BufferedInputStream inputStream=new BufferedInputStream(new FileInputStream(file));
+            byte[] buffer=new byte[8192];
+            int byteRead=-1;
+            while((byteRead=inputStream.read(buffer))!=-1){
+                outputStream.write(buffer,0,byteRead);
+            }
+            inputStream.close();
+            outputStream.close();
+             //   return "redirect:/payments/mn";
         }
 
 

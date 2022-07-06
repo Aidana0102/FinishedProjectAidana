@@ -1,10 +1,7 @@
 package com.example.projectaidana.models;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -15,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ToString
 public class Payment {
 
     @Id
@@ -39,6 +37,7 @@ public class Payment {
 
     @NotEmpty(message="The field should not be empty")
    String paymentDate;
-   @OneToOne(mappedBy = "payment")
+   @OneToOne(mappedBy = "payment",fetch = FetchType.EAGER)
+   @JoinColumn(name = "poluchatel_id")
     private Poluchatel poluchatel;
 }

@@ -174,41 +174,41 @@ payment
 
 
 
-<!--     <label for="beneficiarysName" >Получатель</label>  <br/>-->
-<!--            <input id="beneficiarysName" th:field="*{poluchatel.beneficiarysName}" type="text"   required/>-->
+     <label for="beneficiarysName" >Получатель</label>  <br/>
+            <input id="beneficiarysName" th:field="*{poluchatel.beneficiarysName}" type="text"   required/>
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysName')}" th:error="*{poluchatel.beneficiarysName}"> Заполните это поле  </div>-->
-<!--            <br/>-->
-<!--            <label for="beneficiarysAccount" >Счет получателя </label>  <br/>-->
-<!--            <input id="beneficiarysAccount" th:field="*{poluchatel.beneficiarysAccount}" type="text"    required/>-->
+            <br/>
+            <label for="beneficiarysAccount" >Счет получателя </label>  <br/>
+            <input id="beneficiarysAccount" th:field="*{poluchatel.beneficiarysAccount}" type="text"    required/>
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysAccount')}" th:error="*{poluchatel.beneficiarysAccount}"> Количество симвлов должно быть ровно 16  </div>-->
-<!--            <br/>-->
-<!--            <label for="INN" >ИНН</label>  <br/>-->
-<!--            <input id="INN" th:field="*{poluchatel.INN}" type="text"   />-->
+            <br/>
+            <label for="INN" >ИНН</label>  <br/>
+            <input id="INN" th:field="*{poluchatel.INN}" type="text"   />
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('INN')}" th:error="*{poluchatel.INN}"> Количество символов должно быть ровно  : 14  </div>-->
-<!--            <br/>-->
-<!--            <label for="beneficiarysBIK" >БИК:</label>  <br/>-->
-<!--            <input id="beneficiarysBIK" th:field="*{poluchatel.beneficiarysBIK}" type="text"    />-->
+            <br/>
+            <label for="beneficiarysBIK" >БИК:</label>  <br/>
+            <input id="beneficiarysBIK" th:field="*{poluchatel.beneficiarysBIK}" type="text"    />
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('beneficiarysBIK')}" th:error="*{poluchatel.beneficiarysBIK}"> Количество симвлов должно быть ровно  6 </div>-->
-<!--            <br/>-->
-<!--            <label for="amount" >Сумма</label>  <br/>-->
-<!--            <input id="amount" th:field="*{poluchatel.amount}" type="text"    required/>-->
+            <br/>
+            <label for="amount" >Сумма</label>  <br/>
+            <input id="amount" th:field="*{poluchatel.amount}" type="text"    required/>
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('amount')}" th:error="*{poluchatel.amount}"> Заполните это поле  </div>-->
-<!--            <br/>-->
+            <br/>
 
-<!--            <label  >ГКПО:</label>  <br/>-->
+            <label  >ГКПО:</label>  <br/>
 
-<!--            <select name ="GKPO">-->
-<!--                <option th:each="GKPOtype: ${gkpo}"-->
-<!--                        th:value="${GKPOtype}"-->
-<!--                        th:text="${GKPOtype.displayValue}"  >-->
-<!--                </option>-->
-<!--                </select>-->
+            <select name ="GKPO">
+                <option th:each="GKPOtype: ${gkpo}"
+                        th:value="${GKPOtype}"
+                        th:text="${GKPOtype.displayValue}"  >
+                </option>
+                </select>
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('GKPO')}" th:error="*{poluchatel.GKPO}"> Заполните это поле  </div>-->
-<!--            <br/>-->
-<!--            <label for="purposeOfPayment" >Назначение платежа</label> <br/>-->
-<!--            <input id="purposeOfPayment" th:field="*{poluchatel.purposeOfPayment}" type="text"    required/>-->
+            <br/>
+            <label for="purposeOfPayment" >Назначение платежа</label> <br/>
+            <input id="purposeOfPayment" th:field="*{poluchatel.purposeOfPayment}" type="text"    required/>
 <!--            <div style="color:#ff0000" th:if="${#fields.hasErrors('purposeOfPayment')}" th:e rror="*{purposeOfPayment}"> Заполните это поле  </div>-->
-<!--            <br/>-->
+            <br/>
 
     <br/>
 

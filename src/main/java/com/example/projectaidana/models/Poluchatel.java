@@ -3,6 +3,7 @@ package com.example.projectaidana.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Poluchatel {
 
     @Id
@@ -41,7 +43,7 @@ public class Poluchatel {
     private GKPO GKPO;
     @NotEmpty(message="The field should not be empty")
     String purposeOfPayment;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_name")
     private Payment payment;
 

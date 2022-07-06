@@ -41,7 +41,7 @@ public class Poluchatel {
     private GKPO GKPO;
     @NotEmpty(message="The field should not be empty")
     String purposeOfPayment;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "payment_name")
     private Payment payment;
 

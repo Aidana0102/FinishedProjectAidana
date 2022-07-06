@@ -39,6 +39,6 @@ public class Payment {
 
     @NotEmpty(message="The field should not be empty")
    String paymentDate;
-   @OneToMany(mappedBy = "payment")
-    private List<Poluchatel> poluchatels;
+   @OneToOne(mappedBy = "payment")
+    private Poluchatel poluchatel;
 }
